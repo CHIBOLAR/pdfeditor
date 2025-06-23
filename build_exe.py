@@ -14,11 +14,11 @@ def build_executable():
     # Check if PyInstaller is installed
     try:
         import PyInstaller
-        print("✓ PyInstaller is installed")
+        print("[OK] PyInstaller is installed")
     except ImportError:
-        print("✗ PyInstaller not found. Installing...")
+        print("[ERROR] PyInstaller not found. Installing...")
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pyinstaller"])
-        print("✓ PyInstaller installed")
+        print("[OK] PyInstaller installed")
     
     # Build command
     build_cmd = [
@@ -36,12 +36,12 @@ def build_executable():
     
     try:
         subprocess.check_call(build_cmd)
-        print("\n✓ Build successful!")
+        print("\n[SUCCESS] Build successful!")
         print(f"Executable location: {os.path.join('dist', 'PDF_Text_Editor.exe')}")
         print("\nYou can now distribute the PDF_Text_Editor.exe file.")
         print("Users won't need Python installed to run it!")
     except subprocess.CalledProcessError as e:
-        print(f"\n✗ Build failed: {e}")
+        print(f"\n[ERROR] Build failed: {e}")
         return False
     
     return True
